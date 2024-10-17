@@ -1,8 +1,8 @@
 "use client"; 
 import Image from 'next/image';
-import LogoIcon2 from '../../../assets/logoicon2.png';
-import UserImage from '../../../assets/user.png';
-import BgFrame from '../../../assets/bgFrame.png'; 
+import LogoIcon2 from '@/assets/logoicon2.png';
+import UserImage from '@/assets/user.png';
+import BgFrame from '@/assets/bgFrame.png'; 
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the icons
 import { useState } from 'react';
 
@@ -74,9 +74,9 @@ const LockScreen = () => {
 
           <p className="text-center text-sm mt-4 font-inter">
           Not you? Return {' '}
-            <span className="text-[#6237F0] hover:underline cursor-pointer font-inter">
+            <a href='/auth/login' className="text-[#6237F0] hover:underline cursor-pointer font-inter">
               Sign In
-            </span>
+            </a>
           </p>
         </form>
       </div>

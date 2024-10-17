@@ -1,12 +1,12 @@
 "use client"; 
 import Image from 'next/image';
 import { useState } from 'react';
-import LogoIcon2 from '../../../assets/logoicon2.png';
-import GoogleIcon from '../../../assets/google.png';
-import FacebookIcon from '../../../assets/facebook.png';
-import AppleIcon from '../../../assets/niphone.png';
-import TwitterIcon from '../../../assets/twiii.png';
-import BgFrame from '../../../assets/bgFrame.png'; 
+import LogoIcon2 from '@/assets/logoicon2.png';
+import GoogleIcon from '@/assets/google.png';
+import FacebookIcon from '@/assets/facebook.png';
+import AppleIcon from '@/assets/niphone.png';
+import TwitterIcon from '@/assets/twiii.png';
+import BgFrame from '@/assets/bgFrame.png'; 
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 const SignupPage = () => {

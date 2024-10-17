@@ -1,12 +1,13 @@
 'use client'
-import Image from 'next/image';
-import LogoIcon from '../../../assets/logo.png';
-import GoogleIcon from '../../../assets/google.png';
-import FacebookIcon from '../../../assets/facebook.png';
-import AppleIcon from '../../../assets/niphone.png';
-import TwitterIcon from '../../../assets/twiii.png';
-import BgFrame from '../../../assets/bgFrame.png'; 
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+// 
+import LogoIcon from '@/assets/logo.png';
+import GoogleIcon from '@/assets/google.png';
+import FacebookIcon from '@/assets/facebook.png';
+import AppleIcon from '@/assets/niphone.png';
+import TwitterIcon from '@/assets/twiii.png';
+import BgFrame from '@/assets/bgFrame.png'; 
 
 const LoginPage = () => {
   const router = useRouter()
@@ -32,7 +33,7 @@ const LoginPage = () => {
 
         <form onSubmit={(e) => {
           e.preventDefault()
-          localStorage.setItem('token','sampletoken');
+          // localStorage.setItem('token','sampletoken');
           router.replace('/dashboard')
         }}>
           <div className="mb-4">
