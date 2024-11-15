@@ -1,28 +1,65 @@
-"use client"; 
+"use client";
+
 import Image from 'next/image';
 import { useState } from 'react';
-import LogoIcon2 from '@/assets/logoicon2.png';
-import GoogleIcon from '@/assets/google.png';
-import FacebookIcon from '@/assets/facebook.png';
-import AppleIcon from '@/assets/niphone.png';
-import TwitterIcon from '@/assets/twiii.png';
-import BgFrame from '@/assets/bgFrame.png'; 
+import { useRouter } from 'next/navigation'; // Import router for navigation
+import LogoIcon2 from '../../../assets/logoicon2.png';
+import BgFrame from '../../../assets/bgFrame.png'; 
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
+import Link from 'next/link';
 
 const SignupPage = () => {
+  const router = useRouter(); // Initialize router
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    fullname: '',
+    email: '',
+    password: '',
+    termsAccepted: false
+  });
+  const [error, setError] = useState('');
 
   const togglePasswordVisibility = () => {
-    setPasswordVisible((prev) => !prev);
+    setPasswordVisible(prev => !prev);
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Basic password validation: At least 8 characters, 1 special character
+    const passwordPattern = /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (!passwordPattern.test(formData.password)) {
+      setError("Password must be at least 8 characters long and include a special character.");
+      return;
+    }
+
+    if (!formData.termsAccepted) {
+      setError("Please accept the terms and conditions.");
+      return;
+    }
+
+    setError(""); // Clear any previous error
+    console.log("Form submitted:", formData);
+
+    // Navigate to the dashboard page
+    router.push('/dashboard');
   };
 
   return (
     <div
       className="flex justify-center items-center min-h-screen p-4"
       style={{
-        backgroundImage: `url(${BgFrame.src})`, // Set the background image
-        backgroundSize: 'cover', // Make sure the background covers the entire screen
-        backgroundPosition: 'center', // Center the background image
+        backgroundImage: `url(${BgFrame.src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <div className="bg-white py-16 px-16 rounded-lg shadow-md max-w-md w-full">
@@ -36,7 +73,9 @@ const SignupPage = () => {
           Create an account to start using DashTail
         </p>
 
-        <form>
+        {error && <p className="text-center text-red-500 mb-4">{error}</p>}
+
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="fullname" className="block mb-2 text-sm font-inter text-[#475569]">
               Full Name:
@@ -44,10 +83,12 @@ const SignupPage = () => {
             <input
               type="text"
               name="fullname"
+              value={formData.fullname}
+              onChange={handleChange}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#142D63] focus:border-[#142D63]"
             />
-          </div>
+          </div> 
 
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2 text-sm font-inter text-[#475569]">
@@ -56,6 +97,8 @@ const SignupPage = () => {
             <input
               type="email"
               name="email"
+              value={formData.email}
+              onChange={handleChange}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#142D63] focus:border-[#142D63]"
             />
@@ -67,15 +110,17 @@ const SignupPage = () => {
             </label>
             <div className="flex items-center border border-gray-300 rounded-md shadow-sm focus-within:ring-[#142D63] focus-within:border-[#142D63]">
               <input
-                type={passwordVisible ? 'text' : 'password'} 
+                type={passwordVisible ? 'text' : 'password'}
                 name="password"
+                value={formData.password}
+                onChange={handleChange}
                 required
                 className="mt-1 block w-full px-3 py-2 rounded-md focus:outline-none" 
               />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="p-3 text-gray-500" 
+                className="p-3 text-gray-500"
               >
                 {passwordVisible ? <FaEyeSlash /> : <FaEye />} 
               </button>
@@ -84,8 +129,15 @@ const SignupPage = () => {
 
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center">
-              <input type="checkbox" id="remindMe" className="mr-2" />
-              <label htmlFor="remindMe" className="text-sm font-inter text-[#475569]">
+              <input
+                type="checkbox"
+                name="termsAccepted"
+                checked={formData.termsAccepted}
+                onChange={handleChange}
+                id="termsAccepted"
+                className="mr-2"
+              />
+              <label htmlFor="termsAccepted" className="text-sm font-inter text-[#475569]">
                 You accept our Terms & Conditions
               </label>
             </div>
@@ -98,26 +150,11 @@ const SignupPage = () => {
             Create An Account
           </button>
 
-          <div className="flex justify-center space-x-4 mt-6 flex-wrap">
-            <button className="rounded-full border border-gray-300 p-2 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#6237F0] h-10 w-10 flex items-center justify-center">
-              <Image src={GoogleIcon} alt="Google" width={20} height={20} />
-            </button>
-            <button className="rounded-full border border-gray-300 p-2 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#6237F0] h-10 w-10 flex items-center justify-center">
-              <Image src={FacebookIcon} alt="Facebook" width={20} height={20} />
-            </button>
-            <button className="rounded-full border border-gray-300 p-2 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#6237F0] h-10 w-10 flex items-center justify-center">
-              <Image src={AppleIcon} alt="Apple" width={20} height={20} />
-            </button>
-            <button className="rounded-full border border-gray-300 p-2 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#6237F0] h-10 w-10 flex items-center justify-center">
-              <Image src={TwitterIcon} alt="Twitter" width={24} height={24} />
-            </button>
-          </div>
-
           <p className="text-center text-sm mt-4 font-inter">
             Already Registered?{' '}
-            <a href='/auth/login' className="text-[#6237F0] hover:underline cursor-pointer font-inter">
+            <Link href='/auth/login' className="text-[#6237F0] hover:underline cursor-pointer font-inter">
               Sign in
-            </a>
+            </Link>
           </p>
         </form>
       </div>

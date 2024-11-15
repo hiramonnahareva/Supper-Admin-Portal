@@ -8,7 +8,7 @@ import BgIcon from '../../assets/Bg.png'; // Import the Bg image
 
 const Navbar = ({ toggleSidebar }) => {
   return (
-    <div className="bg-white shadow-md flex items-center justify-between p-2 border-b border-gray-300"> {/* Add border-b for bottom border */}
+    <div className="bg-white shadow-md flex items-center z-50 justify-between p-2 border-b border-gray-300"> {/* Add border-b for bottom border */}
       {/* Hamburger Icon for small screens */}
       <div className="md:hidden flex items-center">
         <FaBars onClick={toggleSidebar} className="text-gray-700 cursor-pointer" size={24} />

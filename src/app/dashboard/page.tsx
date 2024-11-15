@@ -30,10 +30,11 @@ const DashboardPage = () => {
           activeTab={activeTab}
           handleTabClick={handleTabClick}
           isSidebarOpen={isSidebarOpen}
-        />
+          setIsSidebarOpen={setIsSidebarOpen}
+        /> 
 
         {/* Body Section */}
-        <div className={`flex-1 bg-[#F1F5F9] p-6 max-h-screen overflow-auto`}>
+        <div className={`flex-1 bg-[#F1F5F9] p-6 max-h-screen overflow-y-auto`}>
           {activeTab === "Analytics" && <Analytics />}{" "}
           {/* Render Analytics component when tab is "Analytics" */}
           {activeTab === "Clinics" && <Clinics />}{" "}

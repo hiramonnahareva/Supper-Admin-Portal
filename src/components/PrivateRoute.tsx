@@ -12,9 +12,9 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     if (!token) {
       // router.push("/auth/login");
     }
-  }, [token]);
+  }, [router]);
 
   return token ? <>{children}</> : null;
 };
 
-export default PrivateRoute;
+export default PrivateRoute; 
