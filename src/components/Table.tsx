@@ -107,7 +107,7 @@
 //                     {row.status}
 //                   </span>
 //                 </div>
-//               </td> 
+//               </td>
 //               <td className="p-5 text-sm font-medium text-gray-900">
 //                 <label className="inline-flex  items-center cursor-pointer overflow-hidden">
 //                   <input
@@ -135,11 +135,10 @@
 
 // export default Table;
 
-
-import React from 'react';
-import Edit from './svgComponent/Edit';
-import Delete from './svgComponent/Delete';
-import Image from 'next/image';
+import React from "react";
+import Edit from "./svgComponent/Edit";
+import Delete from "./svgComponent/Delete";
+import Image from "next/image";
 
 // Define the type for each row of data
 interface RowData {
@@ -211,11 +210,20 @@ const Table: React.FC<TableProps> = ({ data }) => {
             <td className="p-5 text-sm font-medium text-gray-900">{row.id}</td>
             <td className="px-5 py-3">
               <div className="flex items-center gap-3">
-                <Image width={40} height={40} src={row.image} alt={`${row.role} image`} />
+                <Image
+                  width={40}
+                  height={40}
+                  src={row.image}
+                  alt={`${row.role} image`}
+                />
               </div>
             </td>
-            <td className="p-5 text-sm font-medium text-gray-900">{row.role}</td>
-            <td className="p-5 text-sm font-medium text-gray-900">{row.category}</td>
+            <td className="p-5 text-sm font-medium text-gray-900">
+              {row.role}
+            </td>
+            <td className="p-5 text-sm font-medium text-gray-900">
+              {row.category}
+            </td>
             <td className="p-5 text-sm font-medium text-gray-900">
               <div
                 className={`py-1.5 px-2.5 rounded-lg flex justify-center w-20 items-center gap-1 border ${
