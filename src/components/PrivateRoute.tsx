@@ -10,11 +10,11 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
   useEffect(() => {
     if (!token) {
-      // router.push("/auth/login");
+      router.push("/auth/login");
     }
-  }, [router]);
+  }, [token, router]);
 
   return token ? <>{children}</> : null;
 };
 
-export default PrivateRoute; 
+export default PrivateRoute;  

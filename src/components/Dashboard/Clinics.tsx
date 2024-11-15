@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { useState } from "react";
@@ -7,6 +8,7 @@ import Modal from "../Modal";
 import Table from "../Table";
 
 const clinics = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
 

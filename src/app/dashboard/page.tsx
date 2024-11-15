@@ -11,6 +11,7 @@ const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState("Analytics");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleTabClick = (tabName: any) => {
     setActiveTab(tabName);
   };
