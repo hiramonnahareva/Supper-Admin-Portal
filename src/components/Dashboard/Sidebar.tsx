@@ -5,7 +5,15 @@ import { FaChevronRight } from 'react-icons/fa';
 import AnalyticsIcon from '../../assets/analytics.png';
 import ClinicIcon from '../../assets/banking.png'; 
 
-const Sidebar = ({ activeTab, handleTabClick, isSidebarOpen, setIsSidebarOpen }) => {
+// Define the types for the props
+interface SidebarProps {
+  activeTab: string;
+  handleTabClick: (tab: string) => void;
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (isOpen: boolean) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ activeTab, handleTabClick, isSidebarOpen, setIsSidebarOpen }) => {
   return (
    <div className='relative'>
      <div 

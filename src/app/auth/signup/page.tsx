@@ -1,43 +1,45 @@
 "use client";
 
-import Image from 'next/image';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Import router for navigation
-import LogoIcon2 from '../../../assets/logoicon2.png';
-import BgFrame from '../../../assets/bgFrame.png'; 
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
-import Link from 'next/link';
+import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import LogoIcon2 from "../../../assets/logoicon2.png";
+import BgFrame from "../../../assets/bgFrame.png";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Link from "next/link";
 
 const SignupPage = () => {
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [formData, setFormData] = useState({
-    fullname: '',
-    email: '',
-    password: '',
-    termsAccepted: false
+    fullname: "",
+    email: "",
+    password: "",
+    termsAccepted: false,
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const togglePasswordVisibility = () => {
-    setPasswordVisible(prev => !prev);
+    setPasswordVisible((prev) => !prev);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Basic password validation: At least 8 characters, 1 special character
     const passwordPattern = /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     if (!passwordPattern.test(formData.password)) {
-      setError("Password must be at least 8 characters long and include a special character.");
+      setError(
+        "Password must be at least 8 characters long and include a special character."
+      );
       return;
     }
 
@@ -50,7 +52,7 @@ const SignupPage = () => {
     console.log("Form submitted:", formData);
 
     // Navigate to the dashboard page
-    router.push('/dashboard');
+    router.push("/dashboard");
   };
 
   return (
@@ -58,8 +60,8 @@ const SignupPage = () => {
       className="flex justify-center items-center min-h-screen p-4"
       style={{
         backgroundImage: `url(${BgFrame.src})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className="bg-white py-16 px-16 rounded-lg shadow-md max-w-md w-full">
@@ -77,10 +79,14 @@ const SignupPage = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="fullname" className="block mb-2 text-sm font-inter text-[#475569]">
+            <label
+              htmlFor="fullname"
+              className="block mb-2 text-sm font-inter text-[#475569]"
+            >
               Full Name:
             </label>
             <input
+              id="fullname"
               type="text"
               name="fullname"
               value={formData.fullname}
@@ -88,13 +94,17 @@ const SignupPage = () => {
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#142D63] focus:border-[#142D63]"
             />
-          </div> 
+          </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-2 text-sm font-inter text-[#475569]">
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm font-inter text-[#475569]"
+            >
               Email:
             </label>
             <input
+              id="email"
               type="email"
               name="email"
               value={formData.email}
@@ -104,25 +114,29 @@ const SignupPage = () => {
             />
           </div>
 
-          <div className="mb-4 relative"> 
-            <label htmlFor="password" className="block mb-2 text-sm font-inter text-[#475569]">
+          <div className="mb-4 relative">
+            <label
+              htmlFor="password"
+              className="block mb-2 text-sm font-inter text-[#475569]"
+            >
               Password:
             </label>
             <div className="flex items-center border border-gray-300 rounded-md shadow-sm focus-within:ring-[#142D63] focus-within:border-[#142D63]">
               <input
-                type={passwordVisible ? 'text' : 'password'}
+                id="password"
+                type={passwordVisible ? "text" : "password"}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="mt-1 block w-full px-3 py-2 rounded-md focus:outline-none" 
+                className="mt-1 block w-full px-3 py-2 rounded-md focus:outline-none"
               />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
                 className="p-3 text-gray-500"
               >
-                {passwordVisible ? <FaEyeSlash /> : <FaEye />} 
+                {passwordVisible ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
           </div>
@@ -130,14 +144,17 @@ const SignupPage = () => {
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center">
               <input
+                id="termsAccepted"
                 type="checkbox"
                 name="termsAccepted"
                 checked={formData.termsAccepted}
                 onChange={handleChange}
-                id="termsAccepted"
                 className="mr-2"
               />
-              <label htmlFor="termsAccepted" className="text-sm font-inter text-[#475569]">
+              <label
+                htmlFor="termsAccepted"
+                className="text-sm font-inter text-[#475569]"
+              >
                 You accept our Terms & Conditions
               </label>
             </div>
@@ -151,8 +168,11 @@ const SignupPage = () => {
           </button>
 
           <p className="text-center text-sm mt-4 font-inter">
-            Already Registered?{' '}
-            <Link href='/auth/login' className="text-[#6237F0] hover:underline cursor-pointer font-inter">
+            Already Registered?{" "}
+            <Link
+              href="/auth/login"
+              className="text-[#6237F0] hover:underline cursor-pointer font-inter"
+            >
               Sign in
             </Link>
           </p>

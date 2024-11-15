@@ -6,7 +6,11 @@ import { FaBars } from 'react-icons/fa'; // Importing the hamburger icon
 import Union from '../../assets/Union.png'; // Import the Union image
 import BgIcon from '../../assets/Bg.png'; // Import the Bg image
 
-const Navbar = ({ toggleSidebar }) => {
+interface NavbarProps {
+  toggleSidebar: () => void; // The toggleSidebar prop is a function that takes no arguments and returns nothing
+}
+
+const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   return (
     <div className="bg-white shadow-md flex items-center z-50 justify-between p-2 border-b border-gray-300"> {/* Add border-b for bottom border */}
       {/* Hamburger Icon for small screens */}

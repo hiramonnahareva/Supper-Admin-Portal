@@ -9,7 +9,7 @@ export default function Home() {
     route.replace("/auth/login");
 
     return () => {};
-  }, []);
+  }, [route]);
 
   return <div>Home</div>;
 }

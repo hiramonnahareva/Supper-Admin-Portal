@@ -1,7 +1,11 @@
 import React from 'react';
 import Close from './svgComponent/Close';
 
-const Modal = ({setIsModalVisible}) => {
+interface ModalProps {
+  setIsModalVisible: (visible: boolean) => void; // Type for the prop
+}
+
+const Modal: React.FC<ModalProps> =  ({setIsModalVisible}) => {
     return (
         <div className="fixed inset-0 z-40 min-h-full overflow-y-auto overflow-x-hidden transition flex items-center">
         {/* overlay */}

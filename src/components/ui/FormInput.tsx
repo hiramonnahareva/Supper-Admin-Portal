@@ -1,6 +1,11 @@
 import React from 'react';
 
-const FormInput = ({ label }) => {
+// Define the type for the props
+interface FormInputProps {
+  label: string;
+}
+
+const FormInput: React.FC<FormInputProps> = ({ label }) => {
   return (
     <div className="mb-4">
       <label htmlFor="email" className="block mb-2 text-sm font-inter text-[#475569]">
@@ -16,4 +21,4 @@ const FormInput = ({ label }) => {
   );
 };
 
-export default FormInput;
+export default FormInput; 
