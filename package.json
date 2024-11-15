@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "test": "jest",
     "start": "next start",
-    "lint": "next lint"
+    "serve": "vite preview",
+    "lint": "next lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
     
   },
   "dependencies": {
