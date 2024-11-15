@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "serve": "vite preview",
-    "lint": "next lint",
-    "test": "jest"
+    "lint": "next lint"
   },
   "dependencies": {
     "@fontsource/inter": "^5.1.0",
